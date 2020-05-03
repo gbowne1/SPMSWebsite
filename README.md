@@ -30,13 +30,18 @@ I am pretty sure we will host locally on a Apache or IIS host on a Dell R710.
 I'm figuring the site should use ~4-8 pages.
 
 Page 1) index.htm;
-Page 2) about.htm;
-Page 3) contact.htm;
-Page 4) careers.htm;
-Page 5) capabilities.htm
-Page 5) quote.htm
-Page 6) gallery.htm
 
+Page 2) about.htm;
+
+Page 3) contact.htm;
+
+Page 4) careers.htm;
+
+Page 5) capabilities.htm
+
+Page 5) quote.htm
+
+Page 6) gallery.htm
 
 
 The colors will be:
@@ -44,17 +49,21 @@ The colors will be:
       rgb(8, 178, 225)
       hsl(193, 93%, 46%)
 
+
 2)    #97b824
       rgb(151, 184, 36)
       hsl(73, 67%, 43%)
+
 
 3)    #319185
       rgb(49, 145, 133)
       hsl(173, 49%, 38%)
 
+
 4)    #293077
       rgb(41, 48, 119)
       hsl(235, 49%, 31%)
+
       
 
 
