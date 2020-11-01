@@ -1,55 +1,1163 @@
-<form action="//submit.form" id="EmploymentApplication100" method="post" onsubmit="return ValidateForm(this);">
-<script type="text/javascript">
-function ValidateForm(frm) {
-if (frm.First_Name.value == "") { alert('First name is required.'); frm.First_Name.focus(); return false; }
-if (frm.Last_Name.value == "") { alert('Last name is required.'); frm.Last_Name.focus(); return false; }
-if (frm.Email_Address.value == "") { alert('Email address is required.'); frm.Email_Address.focus(); return false; }
-if (frm.Email_Address.value.indexOf("@") < 1 || frm.Email_Address.value.indexOf(".") < 1) { alert('Please enter a valid email address.'); frm.Email_Address.focus(); return false; }
-if (frm.Position.value == "") { alert('Position is required.'); frm.Position.focus(); return false; }
-if (frm.Phone.value == "") { alert('Phone is required.'); frm.Phone.focus(); return false; }
-return true; }
-</script>
-<table border="0" cellpadding="5" cellspacing="0">
-<tr> <td style="width: 50%">
-<label for="First_Name"><b>First name *</b></label><br />
-<input name="First_Name" type="text" maxlength="50" style="max-width: 260px" />
-</td> <td style="width: 50%">
-<label for="Last_Name"><b>Last name *</b></label><br />
-<input name="Last_Name" type="text" maxlength="50" style="max-width: 260px" />
-</td> </tr> <tr> <td colspan="2">
-<label for="Email_Address"><b>Email *</b></label><br />
-<input name="Email_Address" type="text" maxlength="100" style="max-width: 535px" />
-</td> </tr> <tr> <td colspan="2">
-<label for="Portfolio"><b>Portfolio website</b></label><br />
-<input name="Portfolio" type="text" maxlength="255" value="http://" style="max-width: 535px" />
-</td> </tr> <tr> <td colspan="2">
-<label for="Position"><b>Position you are applying for *</b></label><br />
-<input name="Position" type="text" maxlength="100" style="max-width: 535px" />
-</td> </tr> <tr> <td>
-<label for="Salary"><b>Salary requirements</b></label><br /> <input name="Salary" type="text" maxlength="50" style="max-width: 260px" /> </td> <td>
-<label for="StartDate"><b>When can you start?</b></label><br />
-<input name="StartDate" type="text" maxlength="50" style="max-width: 260px" />
-</td> </tr> <tr> <td>
-<label for="Phone"><b>Phone *</b></label><br />
-<input name="Phone" type="text" maxlength="50" style="max-width: 260px" />
-</td> <td>
-<label for="Fax"><b>Fax</b></label><br />
-<input name="Fax" type="text" maxlength="50" style="max-width: 260px" />
-</td> </tr> <tr> <td colspan="2">
-<label for="Relocate"><b>Are you willing to relocate?</b></label><br />
-<input name="Relocate" type="radio" value="Yes" checked="checked" /> Yes      
-<input name="Relocate" type="radio" value="No" /> No      
-<input name="Relocate" type="radio" value="NotSure" /> Not sure
-</td> </tr> <tr> <td colspan="2">
-<label for="Organization"><b>Last company you worked for</b></label><br />
-<input name="Organization" type="text" maxlength="100" style="max-width: 535px" />
-</td> </tr> <tr> <td colspan="2">
-<label for="Reference"><b>Reference / Comments / Questions</b></label><br />
-<textarea name="Reference" rows="7" cols="40" style="max-width: 535px"></textarea>
-</td> </tr> <tr> <td colspan="2" style="text-align: center;">
-<div style="float: right"> <a href="https://www.insertsitehere.com" id="lnk100" title="form to email">form to email</a></div>
-<script src="https://www.insertsitehere.com/js/FORMKEY:/SEND:my@email.com" type="text/javascript"></script>
-<input name="skip_submit" type="submit" value="Send Application" />
-</td> </tr>
+const loginForm = document.getElementById("login-form");
+const loginButton = document.getElementById("login-form-submit");
+const loginErrorMsg = document.getElementById("login-error-msg");
+
+loginButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    const username = loginForm.username.value;
+    const password = loginForm.password.value;
+
+    if (username === "user" && password === "web_dev") {
+        alert("You have successfully logged in.");
+        location.reload();
+    } else {
+        loginErrorMsg.style.opacity = 1;
+    }
+})
+
+<!-- Form CSS -->
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  background-color: #3a3a3a;
+}
+
+#main-holder {
+  width: 50%;
+  height: 70%;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  background-color: white;
+  border-radius: 7px;
+  box-shadow: 0px 0px 5px 2px black;
+}
+
+#login-error-msg-holder {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+
+#login-error-msg {
+  width: 23%;
+  text-align: center;
+  margin: 0;
+  padding: 5px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #8a0000;
+  border: 1px solid #8a0000;
+  background-color: #e58f8f;
+  opacity: 0;
+}
+
+#error-msg-second-line {
+  display: block;
+}
+
+#login-form {
+  align-self: flex-start;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+
+.login-form-field::placeholder {
+  color: #3a3a3a;
+}
+
+.login-form-field {
+  border: none;
+  border-bottom: 1px solid #3a3a3a;
+  margin-bottom: 10px;
+  border-radius: 3px;
+  outline: none;
+  padding: 0px 0px 5px 5px;
+}
+
+#login-form-submit {
+  width: 100%;
+  padding: 7px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  background-color: #3a3a3a;
+  cursor: pointer;
+  outline: none;
+}
+
+
+<!-- End Form CSS -->
+
+
+<form action = "//submit.form" id = "EmploymentApplication100" method = "post" onsubmit = "return ValidateForm(this);" > < script type = "text/javascript" > function ValidateForm(frm) { if (frm.First_Name.value == "") { alert('First name is required.');
+frm.First_Name.focus();
+return false;
+} if (frm.Last_Name.value == "") { alert('Last name is required.');
+frm.Last_Name.focus();
+return false;
+} if (frm.Email_Address.value == "") { alert('Email address is required.');
+frm.Email_Address.focus();
+return false;
+} if (
+    frm.Email_Address.value.indexOf("@") < 1 || frm.Email_Address.value.indexOf(".") < 1
+) { alert('Please enter a valid email address.');
+frm.Email_Address.focus();
+return false;
+} if (frm.Position.value == "") { alert('Position is required.');
+frm.Position.focus();
+return false;
+} if (frm.Phone.value == "") { alert('Phone is required.');
+frm.Phone.focus();
+return false;
+} return true;
+} < / script > < table border = "0" cellpadding = "5" cellspacing = "0" > < tr > < td style = "width: 50%" > < label for = "First_Name" > < b > First name * < / b > < / label > < br / > < input name = "First_Name" type = "text" maxlength = "50" style = "max-width: 260px" / > < / td > < td style = "width: 50%" > < label for = "Last_Name" > < b > Last name * < / b > < / label > < br / > < input name = "Last_Name" type = "text" maxlength = "50" style = "max-width: 260px" / > < / td > < / tr > < tr > < td colspan = "2" > < label for = "Email_Address" > < b > Email * < / b > < / label > < br / > < input name = "Email_Address" type = "text" maxlength = "100" style = "max-width: 535px" / > < / td > < / tr > < tr > < td colspan = "2" > < label for = "Portfolio" > < b > Portfolio website < / b > < / label > < br / > < input name = "Portfolio" type = "text" maxlength = "255" value = "http://" style = "max-width: 535px" / > < / td > < / tr > < tr > < td colspan = "2" > < label for = "Position" > < b > Position you are applying for * < / b > < / label > < br / > < input name = "Position" type = "text" maxlength = "100" style = "max-width: 535px" / > < / td > < / tr > < tr > < td > < label for = "Salary" > < b > Salary requirements < / b > < / label > < br / > < input name = "Salary" type = "text" maxlength = "50" style = "max-width: 260px" / > < / td > < td > < label for = "StartDate" > < b >
+When can you start ? < / b > < / label > < br / > < input name = "StartDate" type = "text" maxlength = "50" style = "max-width: 260px" / > < / td > < / tr > < tr > < td > < label for = "Phone" > < b > Phone * < / b > < / label > < br / > < input name = "Phone" type = "text" maxlength = "50" style = "max-width: 260px" / > < / td > < td > < label for = "Fax" > < b > Fax < / b > < / label > < br / > < input name = "Fax" type = "text" maxlength = "50" style = "max-width: 260px" / > < / td > < / tr > < tr > < td colspan = "2" > < label for = "Relocate" > < b > Are you willing to relocate ? < / b > < / label > < br / > < input name = "Relocate" type = "radio" value = "Yes" checked = "checked" / > Yes < input name = "Relocate" type = "radio" value = "No" / > No < input name = "Relocate" type = "radio" value = "NotSure" / > Not sure < / td > < / tr > < tr > < td colspan = "2" > < label for = "Organization" > < b > Last company you worked for < / b > < / label > < br / > < input name = "Organization" type = "text" maxlength = "100" style = "max-width: 535px" / > < / td > < / tr > < tr > < td colspan = "2" > < label for = "Reference" > < b > Reference / Comments / Questions < / b > < / label > < br / > < textarea name = "Reference" rows = "7" cols = "40" style = "max-width: 535px" > < / textarea > < / td > < / tr > < tr > < td colspan = "2" style = "text-align: center;" > < div style = "float: right" > < a href = "https://www.100forms.com" id = "lnk100" title = "form to email" > form to email < / a > < / div > < script src = "https://www.100forms.com/js/FORMKEY:UDKUCZFGU4PP/SEND:my@email.com" type = "text/javascript" > < / script > < input name = "skip_submit" type = "submit" value = "Send Application" / > < / td > < / tr > < / table > < / form >
+
+<html>
+<head>
+<title>Login Page</title>
+</head>
+<body>
+<form name="loginForm" method="post" action="login.php">
+<table width="20%" bgcolor="0099CC" align="center">
+
+<tr>
+<td colspan=2><center><font size=4><b>HTML Login Page</b></font></center></td>
+</tr>
+
+<tr>
+<td>Username:</td>
+<td><input type="text" size=25 name="userid"></td>
+</tr>
+
+<tr>
+<td>Password:</td>
+<td><input type="Password" size=25 name="pwd"></td>
+</tr>
+
+<tr>
+<td ><input type="Reset"></td>
+<td><input type="submit" onclick="return check(this.form)" value="Login"></td>
+</tr>
+
 </table>
 </form>
+<script language="javascript">
+function check(form)
+{
+
+if(form.userid.value == "Roseindia" && form.pwd.value == "Roseindia")
+{
+	return true;
+}
+else
+{
+	alert("Error Password or Username")
+	return false;
+}
+}
+</script>
+
+</body>
+</html>
+
+<form action="action_page.php" method="post">
+ <div class="imgcontainer">
+    <img src="img_avatar2.png" alt="Avatar" class="avatar">
+  </div>
+
+  <div class="container">
+    <label for="uname"><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="uname" required>
+
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="psw" required>
+
+    <button type="submit">Login</button>
+    <label><div id="container_demo" >
+	<!-- hidden anchor to stop jump http://www.css3create.com/Astuce-Empecher-le-scroll-avec-l-utilisation-de-target#wrap4  -->
+	<a class="hiddenanchor" id="toregister"></a>
+	<a class="hiddenanchor" id="tologin"></a>
+	<div id="wrapper">
+		<div id="login" class="animate form">
+			<form  action="mysuperscript.php" autocomplete="on"> 
+				<h1>Log in</h1> 
+				<p> 
+					<label for="username" class="uname" data-icon="u" > Your email or username </label>
+					<input id="username" name="username" required="required" type="text" placeholder="myusername or mymail@mail.com"/>
+				</p>
+				<p> 
+					<label for="password" class="youpasswd" data-icon="p"> Your password </label>
+					<input id="password" name="password" required="required" type="password" placeholder="eg. X8df!90EO" /> 
+				</p>
+				<p class="keeplogin"> 
+					<input type="checkbox" name="loginkeeping" id="loginkeeping" value="loginkeeping" /> 
+					<label for="loginkeeping">Keep me logged in</label>
+				</p>
+				<p class="login button"> 
+					<input type="submit" value="Login" /> 
+				</p>
+				<p class="change_link">
+					Not a member yet ?
+					<a href="#toregister" class="to_register">Join us</a>
+				</p>
+			</form>
+		</div>
+
+		<div id="register" class="animate form">
+			<form  action="mysuperscript.php" autocomplete="on"> 
+				<h1> Sign up </h1> 
+				<p> 
+					<label for="usernamesignup" class="uname" data-icon="u">Your username</label>
+					<input id="usernamesignup" name="usernamesignup" required="required" type="text" placeholder="mysuperusername690" />
+				</p>
+				<p> 
+					<label for="emailsignup" class="youmail" data-icon="e" > Your email</label>
+					<input id="emailsignup" name="emailsignup" required="required" type="email" placeholder="mysupermail@mail.com"/> 
+				</p>
+				<p> 
+					<label for="passwordsignup" class="youpasswd" data-icon="p">Your password </label>
+					<input id="passwordsignup" name="passwordsignup" required="required" type="password" placeholder="eg. X8df!90EO"/>
+				</p>
+				<p> 
+					<label for="passwordsignup_confirm" class="youpasswd" data-icon="p">Please confirm your password </label>
+					<input id="passwordsignup_confirm" name="passwordsignup_confirm" required="required" type="password" placeholder="eg. X8df!90EO"/>
+				</p>
+				<p class="signin button"> 
+					<input type="submit" value="Sign up"/> 
+				</p>
+				<p class="change_link">  
+					Already a member ?
+					<a href="#tologin" class="to_register"> Go and log in </a>
+				</p>
+			</form>
+		</div>
+		
+	</div>
+</div>  1f1f1">
+    <button type="button" class="cancelbtn">Cancel</button>
+    <span class="psw">Forgot <a href="#">password?</a></span>
+  </div>
+</form> 
+ <form action="action_page.php">
+  <div class="container">
+    <h1>Register</h1>
+    <p>Please fill in this form to create an account.</p>
+    <hr>
+
+    <label for="email"><b>Email</b></label>
+    <input type="text" placeholder="Enter Email" name="email" id="email" required>
+
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+
+    <label for="psw-repeat"><b>Repeat Password</b></label>
+    <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
+    <hr>
+
+    <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
+    <button type="submit" class="registerbtn">Register</button>
+  </div>
+
+  <div class="container signin">
+    <p>Already have an account? <a href="#">Sign in</a>.</p>
+  </div>
+</form>  
+
+<style> 
+    /*set border to the form*/ 
+      
+    form { 
+        border: 3px solid #f1f1f1; 
+    } 
+    /*assign full width inputs*/ 
+      
+    input[type=text], 
+    input[type=password] { 
+        width: 100%; 
+        padding: 12px 20px; 
+        margin: 8px 0; 
+        display: inline-block; 
+        border: 1px solid #ccc; 
+        box-sizing: border-box; 
+    } 
+    /*set a style for the buttons*/ 
+      
+    button { 
+        background-color: #4CAF50; 
+        color: white; 
+        padding: 14px 20px; 
+        margin: 8px 0; <div id="container_demo" >
+	<!-- hidden anchor to stop jump http://www.css3create.com/Astuce-Empecher-le-scroll-avec-l-utilisation-de-target#wrap4  -->
+	<a class="hiddenanchor" id="toregister"></a>
+	<a class="hiddenanchor" id="tologin"></a>
+	<div id="wrapper">
+		<div id="login" class="animate form">
+			<form  action="mysuperscript.php" autocomplete="on"> 
+				<h1>Log in</h1> 
+				<p> 
+					<label for="username" class="uname" data-icon="u" > Your email or username </label>
+					<input id="username" name="username" required="required" type="text" placeholder="myusername or mymail@mail.com"/>
+				</p>
+				<p> 
+					<label for="password" class="youpasswd" data-icon="p"> Your password </label>
+					<input id="password" name="password" required="required" type="password" placeholder="eg. X8df!90EO" /> 
+				</p>
+				<p class="keeplogin"> 
+					<input type="checkbox" name="loginkeeping" id="loginkeeping" value="loginkeeping" /> 
+					<label for="loginkeeping">Keep me logged in</label>
+				</p>
+				<p class="login button"> 
+					<input type="submit" value="Login" /> 
+				</p>
+				<p class="change_link">
+					Not a member yet ?
+					<a href="#toregister" class="to<!DOCTYPE html>_register">Join us</a>
+				</p>
+			</form>
+		</div>
+
+		<div id="register" class="animate form">
+			<form  action="mysuperscript.php" autocomplete="on"> 
+				<h1> Sign up </h1> 
+				<p> 
+					<label for="usernamesignup" class="uname" data-icon="u">Your username</label>
+					<input id="usernamesignup" name="usernamesignup" required="required" type="text" placeholder="mysuperusername690" />
+				</p>
+				<p> 
+					<label for="emailsignup" class="youmail" data-icon="e" > Your email</label>
+					<input id="emailsignup" name="emailsignup" required="required" type="email" placeholder="mysupermail@mail.com"/> 
+				</p>
+				<p> 
+					<label for="passwordsignup" class="youpasswd" data-icon="p">Your password </label>
+					<input id="passwordsignup" name="passwordsignup" required="required" type="password" placeholder="eg. X8df!90EO"/>
+				</p>
+				<p> 
+					<label for="passwordsignup_confirm" class="youpasswd" data-icon="p">Please confirm your password </label>
+					<input id="passwordsignup_confirm" name="passwordsignup_confirm" required="required" type="password" placeholder="eg. X8df!90EO"/>
+				</p>
+				<p class="signin button"> 
+					<input type="submit" value="Sign up"/> 
+				</p>
+				<p class="change_link">  
+					Already a member ?
+					<a href="#tologin" class="to_register"> Go and log in </a>
+				</p>
+			</form>
+		</div>
+		
+	</div>
+</div>  
+      
+    button:hover { 
+        opacity: 0.8; 
+    } 
+    /*set extra style for the cancel button*/ 
+      
+    .cancelbtn { 
+        width: auto; 
+        padding: 10px 18px; 
+        background-color: #f44336; 
+    } 
+    /*centre the display image inside the container*/ 
+      
+    .imgcontainer { 
+        text-align: center; 
+        margin: 24px 0 12px 0; 
+    } 
+    /*set image properties*/ 
+      
+    img.avatar { 
+        width: 40%; 
+        border-radius: 50%; 
+    } <!DOCTYPE html>
+        padding: 16px; 
+    } 
+    /*set the forgot password text*/ 
+      
+    span.psw { 
+        float: right; 
+        padding-top: 16px; 
+    } 
+    /*set styles for span and cancel button on small screens*/ 
+      
+    @media screen and (max-width: 300px) { 
+        span.psw { 
+            display: block; 
+            float: none; 
+        } 
+        .cancelbtn { 
+            width: 100%; 
+        } 
+    } 
+</style> 
+  
+<body> 
+  
+    <h2>Login Form</h2> 
+    <!--Step 1 : Adding HTML-->
+    <form action="/action_page.php"> 
+        <div class="imgcontainer"> 
+            <img src= 
+"https://media.geeksforgeeks.org/wp-content/cdn-uploads/20190710102234/download3.png" 
+                 alt="Avatar" class="avatar"> <div id="container_demo" >
+	<!-- hidden anchor to stop jump http://www.css3crea
+
+    <html>
+    <head>
+    <title>
+    Login page
+    </title>
+    </head>
+    <body>
+    <h1 style="font-family:Comic Sans Ms;text-align="center";font-size:20pt;
+    color:#00FF00;>
+    Simple Login Page
+    </h1>
+    <form name="login">
+    Username<input type="text" name="userid"/>
+    Password<input type="password" name="pswrd"/>
+    <input type="button" onclick="check(this.form)" value="Login"/>
+    <input type="reset" value="Cancel"/>
+    </form>
+    <script language="javascript">
+    function check(form)/*function to check userid & password*/
+    {
+     /*the following code checkes whether the entered userid and password are matching*/
+     if(form.userid.value == "myuserid" && form.pswrd.value == "mypswrd")
+      {
+        window.open('target.html')/*opens the target page while Id & password matches*/
+      }
+     else
+     {
+       alert("Error Password or Username")/*displays error message*/
+      }
+    }
+    </script>
+    </body>
+    </html>
+
+
+			<form  action="mysuperscript.php" autocomplete="on"> 
+				<h1>Log in</h1> 
+				<p> 
+					<label for="username" class="uname" data-icon="u" > Your email or username </label>
+					<input id="username" name="username" required="required" type="text" placeholder="myusername or mymail@mail.com"/>
+				</p>
+				<p> 
+					<label for="password" class="youpasswd" data-icon="p"> Your password </label>
+					<input id="password" name="password" required="required" type="password" placeholder="eg. X8df!90EO" /> 
+				</p>
+				<p class="keeplogin"> 
+					<input type="checkbox" name="loginkeeping" id="loginkeeping" value="loginkeeping" /> 
+					<label for="loginkeeping">Keep me logged in</label>
+				</p>
+				<p class="login button"> 
+					<input type="submit" value="Login" /> 
+				</p>
+				<p class="change_link">
+					Not a member yet ?
+					<a href="#toregister" class="to_register">Join us</a>
+				</p>
+			</form>
+		</div>
+
+		<div id="register" class="animate form">
+			<form  action="mysuperscript.php" autocomplete="on"> 
+				<h1> Sign up </h1> 
+				<p> 
+					<label for="usernamesignup" class="uname" data-icon="u">Your username</label>
+					<input id="usernamesignup" name="usernamesignup" required="required" type="text" placeholder="mysuperusername690" />
+				</p>
+				<p> 
+					<label for="emailsignup" class="youmail" data-icon="e" > Your email</label>
+					<input id="emailsignup" name="emailsignup" required="required" type="email" placeholder="mysupermail@mail.com"/> 
+				</p>
+				<p> 
+					<label for="passwordsignup" class="youpasswd" data-icon="p">Your password </label>
+					<input id="passwordsignup" name="passwordsignup" required="required" type="password" placeholder="eg. X8df!90EO"/>
+				</p>
+				<p> 
+					<label for="passwordsignup_confirm" class="youpasswd" data-icon="p">Please confirm your password </label>
+					<input id="passwordsignup_confirm"
+
+    <html>
+    <head>
+    <title>
+    Login page
+    </title>
+    </head>
+    <body>
+    <h1 style="font-family:Comic Sans Ms;text-align="center";font-size:20pt;
+    color:#00FF00;>
+    Simple Login Page
+    </h1>
+    <form name="login">
+    Username<input type="text" name="userid"/>
+    Password<input type="password" name="pswrd"/>
+    <input type="button" onclick="check(this.form)" value="Login"/>
+    <input type="reset" value="Cancel"/>
+    </form>
+    <script language="javascript">
+    function check(form)/*function to check userid & password*/
+    {
+     /*the following code checkes whether the entered userid and password are matching*/
+     if(form.userid.value == "myuserid" && form.pswrd.value == "mypswrd")
+      {
+        window.open('target.html')/*opens the target page while Id & password matches*/
+      }
+     else
+     {
+       alert("Error Password or Username")/*displays error message*/
+      }
+    }
+    </script>
+    </body>
+    </html>
+
+ name="passwordsignup_confirm" required="required" type="password" placeholder="eg. X8df!90EO"/>
+				</p>
+				<p class="si<!DOCTYPE html>ype="submit" value="Sign up"/> 
+				</p>
+				<p class="change_link">  
+					Already a member ?
+					<a href="#tologin" class="to_register"> Go and log in </a>
+				</p>
+			</form>
+		</div>
+		
+	</div>
+</div>  sername" name="uname" required> 
+  
+            <label><b>Password</b></label> 
+            <input type="password" placeholder="Enter Password" name="psw" required> 
+  
+            <button type="submit">Login</button> 
+
+    <html>
+    <head>
+    <title>
+    Login page
+    </title>
+    </head>
+    <body>
+    <h1 style="font-family:Comic Sans Ms;text-align="center";font-size:20pt;
+    color:#00FF00;>
+    Simple Login Page
+    </h1>
+    <form name="login">
+    Username<input type="text" name="userid"/>
+    Password<input type="password" name="pswrd"/>
+    <input type="button" onclick="check(this.form)" value="Login"/>
+    <input type="reset" value="Cancel"/>
+    </form>
+    <script language="javascript">
+    function check(form)/*function to check userid & password*/
+    {
+     /*the following code checkes whether the entered userid and password are matching*/
+     if(form.userid.value == "myuserid" && form.pswrd.value == "mypswrd")
+      {
+        window.open('target.html')/*opens the target page while Id & password matches*/
+      }
+     else
+     {
+       alert("Error Password or Username")/*displays error message*/
+      }
+    }
+    </script>
+    </body>
+    </html>
+
+ord?</a></span> 
+        </div> 
+    </form> 
+  
+</body> 
+  <div id="container_demo" >
+	<!-- hidden anchor to stop jump http://www.css3create.com/Astuce-Empecher-le-scroll-avec-l-utilisation-de-target#wrap4  -->
+	<a class="hiddenanchor" id="toregister"></a>
+	<a class="hiddenanchor" id="tologin"></a>
+	<div id="wrapper">
+		<div id="login" class="animate form">
+			<form  action="mysuperscript.php" autocomplete="on"> 
+				<h1>Log in</h1> 
+				<p> 
+					<label for="username" class="uname" data-icon="u" > Your email or username </label>
+					<input id="username" name="username" required="required" type="text" placeholder="myusername or mymail@mail.com"/>
+				</p>
+				<p> 
+					<label f<!DOCTYPE html>or="password" class="youpasswd" data-icon="p"> Your password </label>
+					<input id="password" name="password" required="required" type="password" placeholder="eg. X8df!90EO" /> 
+				</p>
+				<p class="keeplogin"> 
+					<input type="checkbox" name="loginkeeping" id="loginkeeping" value="loginkeeping" /> 
+					<label for="loginkeeping">Keep me logged in</label>
+				</p>
+				<p class="login button"> 
+					<input type="submit" value="Login" /> 
+				</p>
+				<p class="change_link">
+					Not a member yet ?
+					<a href="#toregister" class="to_register">Join us</a>
+				</p>
+			</form>
+		</div>
+
+		<div id="register" class="animate form">
+			<form  action="mysuperscript.php" autocomplete="on"> 
+				<h1> Sign up </h1> 
+				<p> 
+					<label for="usernamesignup" class="uname" data-icon="u">Your username</label>
+					<input id="usernamesignup" name="usernamesignup" required="required" type="text" placeholder="mysuperusername690" />
+				</p>
+				<p> 
+					<label for="emailsignup" class="youmail" data-icon="e" > Your email</label>
+					<input id="emailsignup" name="emailsignup" required="required" type="email" placeholder="mysupermail@mail.com"/> 
+				</p>
+				<p> 
+					<label for="passwordsignup" class="youpasswd" data-icon="p">Your password </label>
+					<input id="passwordsignup" name="passwordsignup" required="required" type="password" placeholder="eg. X8df!90EO"/>
+				</p>
+				<p> 
+					<label for="passwordsignup_confirm" class="youpasswd" data-icon="p">Please confirm your password </label>
+					<input id="passwordsignup_confirm" name="passwordsignup_confirm" required="required" type="password" placeholder="eg. X8df!90EO"/>
+				</p>
+
+    <html><!DOCTYPE html>
+    <head>
+    <title>
+    Login page
+    </title>
+    </head>
+    <body>
+    <h1 style="font-family:Comic Sans Ms;text-align="center";font-size:20pt;
+    color:#00FF00;>
+    Simple Login Page
+    </h1>
+    <form name="login">
+    Username<input type="text" name="userid"/>
+    Password<input type="password" name="pswrd"/>
+    <input type="button" onclick="check(this.form)" value="Login"/>
+    <input type="reset" value="Cancel"/>
+    </form>
+    <script language="javascript">
+    function check(form)/*function to check userid & password*/
+    {
+     /*the following code checkes whether the entered userid and password are matching*/
+     if(form.userid.value == "myuserid" && form.pswrd.value == "mypswrd")
+      {
+        window.open('target.html')/*opens the target page while Id & password matches*/
+      }
+     else
+     {
+       alert("Error Password or Username")/*displays error message*/
+      }
+    }
+    </script>
+    </body>
+    </html>
+
+
+					<a href="#tologin" class="to_register"> Go and log in </a>
+				</p>
+			</form>
+		</div>
+		
+	</div>
+</div>  
+
+<div id="container_demo" >
+	
+	<a class="hiddenanchor" id="toregister"></a>
+	<a class="hiddenanchor" id="tologin"></a>
+	<div id="wrapper">
+		<div id="login" class="animate form">
+			<form  action="mysuperscript.php" autocomplete="on"> 
+				<h1>Log in</h1> 
+				<p> 
+					<label for="username" class="uname" data-icon="u" > Your email or username </label>
+					<input id="username" name="username" required="required" type="text" placeholder="myusername or mymail@mail.com"/>
+				</p>
+				<p> 
+					<label for="password" class="youpasswd" data-icon="p"> Your password </label>
+					<input id="password" name="password" required="required" type="password" placeholder="eg. X8df!90EO" /> 
+				</p>
+
+    <html>
+    <head>
+    <title>
+    Login page
+    </title>
+    </head>
+    <body>
+    <h1 style="font-family:Comic Sans Ms;text-align="center";font-size:20pt;
+    color:#00FF00;>
+    Simple Login Page
+    </h1>
+    <form name="login">
+    Username<input type="text" name="userid"/>
+    Password<input type="password" name="pswrd"/>
+    <input type="button" onclick="check(this.form)" value="Login"/>
+    <input type="reset" value="Cancel"/>
+    </form>
+    <script language="javascript">
+    function check(form)/*function to check userid & password*/
+    {
+     /*the following code checkes whether the entered userid and password are matching*/
+     if(form.userid.value ==<!DOCTYPE html>
+     else
+     {
+       alert("Error Password or Username")/*displays error message*/
+      }
+    }
+    </script>
+    </body>
+    </html>
+
+
+    <title>
+    Login page
+    </title>
+    </head>
+    <body>
+    <h1 style="font-family:Comic Sans Ms;text-align="center";font-size:20pt;
+    color:#00FF00;>
+    Simple Login Page
+    </h1>
+    <form name="login">
+    Username<input type="text" name="userid"/>
+    Password<input type="password" name="pswrd"/>
+    <input type="button" 
+
+    <html>
+    <head>
+    <title>
+    Login page
+    </title>
+    </head>
+    <body>
+    <h1 style="font-family:Comic Sans Ms;text-align="center";font-size:20pt;
+    color:#00FF00;>
+    Simple Login Page
+    </h1>
+    <form name="login">
+    Username<input type="text" name="userid"/>
+    Password<input type="password" name="pswrd"/>
+    <input type="button" onclick="check(this.form)" value="Login"/>
+    <input type="reset" value="Cancel"/>
+    </form>
+    <script language="javascript">
+    function check(form)/*function to check userid & password*/
+    {
+     /*the following code checkes whether the entered userid and password are matching*/
+     if(form.userid.value == "myuserid" && form.pswrd.value == "mypswrd")
+      {
+        window.open('target.html')/*opens the target page while Id & password matches*/
+      }
+     else
+     {
+       alert("Error Password or Username")/*displays error message*/
+      }
+    }
+    </script>
+    </body>
+    </html>
+
+ascript">
+    function check(form)/*function to check userid & password*/
+    {
+     /*the following code checkes whether the entered userid and password are matching*/
+     if(form.userid.value == "myuserid" && form.pswrd.value == "mypswrd")
+      {
+        window.open('target.html')/*opens the target page while Id & password matches*/
+      }
+     else
+     {
+       alert("Error Password or Username")/*displays error message*/
+      }
+    }
+    </script>
+    </body>
+    </html>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="login-page.css">
+  <script defer src="login-page.js"></script>
+</head>
+
+<body>
+  <main id="main-holder">
+    <h1 id="login-header">Login</h1>
+    
+    <div id="login-error-msg-holder">
+      <p id="login-error-msg">Invalid username <span id="error-msg-second-line">and/or password</span></p>
+    </div>
+    
+    <form id="login-form">
+      <input type="text" name="username" id="username-field" class="login-form-field" placeholder="Username">
+      <input type="password" name="password" id="password-field" class="login-form-field" placeholder="Password">
+      <input type="submit" value="Login" id="login-form-submit">
+    </form>
+  
+  </main>
+</body>
+
+</html>
+
+    <html>
+    <head>
+    <title>
+    Login page
+    </title>
+    </head>
+    <body>
+    <h1 style="font-family:Comic Sans Ms;text-align="center";font-size:20pt;
+    color:#00FF00;>
+    Simple Login Page
+    </h1>
+    <form name="login">
+    Username<input type="text" name="userid"/>
+    Password<input type="password" name="pswrd"/>
+    <input type="button" onclick="check(this.form)" value="Login"/>
+    <input type="reset" value="Cancel"/>
+    </form>
+    <script language="javascript">
+    function check(form)/*function to check userid & password*/
+    {
+     /*the following code checkes whether the entered userid and password are matching*/
+     if(form.userid.value == "myuserid" && form.pswrd.value == "mypswrd")
+      {
+        window.open('target.html')/*opens the target page while Id & password matches*/
+      }
+     else
+     {
+       alert("Error Password or Username")/*displays error message*/
+      }
+    }
+    </script>
+    </body>
+    </html>
+
+
+				<p class="change_link">
+					Not a member yet ?
+					<a href="#toregister" class="to_register">Join us</a>
+				</p>
+			</form>
+		</div>
+
+		<div id="register" class="animate form">
+			<form  action="mysuperscript.php" autocomplete="on"> 
+				<h1> Sign up </h1> 
+				<p> 
+					<label for="usernamesignup" class="uname" data-icon="u">Your username</label>
+					<input id="usernamesignup" name="usernamesignup" required="required" type="text" placeholder="mysuperusername690" />
+				</p>
+
+    <html>
+    <head>
+    <title>
+    Login page
+    </title>
+    </head>
+    <body>
+    <h1 style="font-family:Comic Sans Ms;text-align="center";font-size:20pt;
+    color:#00FF00;>
+    Simple Login Page
+    </h1>
+    <form name="login">
+    Username<input type="text" name="userid"/>
+    Password<input type="password" name="pswrd"/>
+    <input type="button" onclick="check(this.form)" value="Login"/>
+    <input type="reset" value="Cancel"/>
+    </form>
+    <script language="javascript">
+    function check(form)/*function to check userid & password*/
+    {
+     /*the following code checkes whether the entered userid and password are matching*/
+     if(form.userid.value == "myuserid" && form.pswrd.value == "mypswrd")
+      {
+        window.open('target.html')/*opens the target page while Id & password matches*/
+      }
+     else
+     {
+       alert("Error Password or Username")/*displays error message*/
+      }
+    }
+
+    <html>
+    <head>
+    <title>
+    Login page
+    </title>
+    </head>
+    <body>
+    <h1 style="font-family:Comic Sans Ms;text-align="center";font-size:20pt;
+    color:#00FF00;>
+    Simple Login Page
+    </h1>
+    <form name="login">
+    Username<input type="text" name="userid"/>
+    Password<input type="password" name="pswrd"/>
+    <input type="button" onclick="check(this.form)" value="Login"/>
+    <input type="reset" value="Cancel"/>
+    </form>
+    <script language="javascript">
+    function check(form)/*function to check userid & password*/
+    {
+     /*the following code checkes whether the entered userid and password are matching*/
+     if(form.userid.value == "myuserid" && form.pswrd.value == "mypswrd")
+      {
+        window.open('target.html')/*opens the target page while Id & password matches*/
+      }
+     else
+     {
+       alert("Error Password or Username")/*displays error message*/
+      }
+    }
+    </script>
+    </body>
+    </html>
+
+ur email</label>
+					<input id="emailsignup" name="emailsignup" required="required" type="email" placeholder="mysupermail@mail.com"/> 
+				</p>
+				<p> 
+					<label for="passwordsignup" class="youpasswd" data-icon="p">Your password </label>
+					<input id="passwordsignup" name="passwordsignup" required="required" type="password" placeholder="eg. X8df!90EO"/>
+				</p>
+				<p> 
+					<label for="passwordsignup_confirm" class="youpasswd" data-icon="p">Please confirm your password </label>
+					<input id="passwordsignup_confirm" name="passwordsignup_confirm" required="required" type="password" placeholder="eg. X8df!90EO"/>
+				</p>
+				<p class="signin button"> 
+					<input type="submit" value="Sign up"/> 
+				</p>
+				<p class="change_link">  
+					Already a member ?
+					<a hr
+
+    <html>
+    <head>
+    <title>
+    Login page
+    </title>
+    </head>
+    <body>
+    <h1 style="font-family:Comic Sans Ms;text-align="center";font-size:20pt;
+    color:#00FF00;>
+    Simple Login Page
+    </h1>
+    <form name="login">
+    Username<input type="text" name="userid"/>
+    Password<input type="password" name="pswrd"/>
+    <input type="button" onclick="check(this.form)" value="Login"/>
+    <input type="reset" value="Cancel"/>
+    </form>
+    <script language="javascript">
+    function check(form)/*function to check userid & password*/
+    {
+     /*the following code checkes whether the entered userid and password are matching*/
+     if(form.userid.value == "myuserid" && form.pswrd.value == "mypswrd")
+      {
+        window.open('target.html')/*opens the target page while Id & password matches*/
+      }
+     else
+     {
+       alert("Error Password or Username")/*displays error message*/
+      }
+    }
+    </script>
+    </body>
+    </html>
+
+
+    <head>
+    <title>
+    Login page
+    </title>
+    </head>
+    <body>
+    <h1 style="font-family:Comic Sans Ms;text-align="center";font-size:20pt;
+    color:#00FF00;>
+    Simple Login Page
+    </h1>
+    <form name="login">
+    Username<input type="text" name="userid"/>
+    Password<input type="
+
+    <html>
+    <head>
+    <title>
+    Login page
+    </title>
+    </head>
+    <body>
+    <h1 style="font-family:Comic Sans Ms;text-align="center";font-size:20pt;
+    color:#00FF00;>
+    Simple Login Page
+    </h1>
+    <form name="login">
+    Username<input type="text" name="userid"/>
+    Password<input type="password" name="pswrd"/>
+    <input type="button" onclick="check(this.form)" value="Login"/>
+    <input type="reset" value="Cancel"/>
+    </form>
+    <script language="javascript">
+    function check(form)/*function to check userid & password*/
+    {
+     /*the following code checkes whether the entered userid and password are matching*/
+     if(form.userid.value == "myuserid" && form.pswrd.value == "mypswrd")
+      {
+        window.open('target.html')/*opens the target page while Id & password matches*/
+      }
+     else
+     {
+       alert("Error Password or Username")/*displays error message*/
+      }
+    }
+    </script>
+    </body>
+    </html>
+
+password" name="pswrd"/>
+    <input type="button" onclick="check(this.form)" value="Login"/>
+    <input type="reset" value="Cancel"/>
+    </form>
+    <script language="javascript">
+    function check(form)/*function to check userid & password*/
+    {
+     /*the following code checkes whether the entered userid and password are matching*/
+     if(form.userid.value == "myuserid" && form.pswrd.value == "mypswrd")
+      {
+        window.open('target.html')/*opens the target page while Id & password matches*/
+      }
+     else
+     {
+       alert("Error Password or Username")/*displays error message*/
+      }
+    }
+    </script>
+    </body>
+    </html>
+
+
+
+    <html>
+    <head>
+
+    <html>
+    <head>
+    <title>
+    Login page
+    </title>
+    </head>
+    <body>
+    <h1 style="font-family:Comic Sans Ms;text-align="center";font-size:20pt;
+    color:#00FF00;>
+    Simple Login Page
+    </h1>
+    <form name="login">
+    Username<input type="text" name="userid"/>
+    Password<input type="password" name="pswrd"/>
+    <input type="button" onclick="check(this.form)" value="Login"/>
+    <input type="reset" value="Cancel"/>
+    </form>
+    <script language="javascript">
+    function check(form)/*function to check userid & password*/
+    {
+     /*the following code checkes whether the entered userid and password are matching*/
+     if(form.userid.value == "myuserid" && form.pswrd.value == "mypswrd")
+      {
+        window.open('target.html')/*opens the target page while Id & password matches*/
+      }
+     else
+     {
+       alert("Error Password or Username")/*displays error message*/
+      }
+    }
+    </script>
+    </body>
+    </html>
+
+
+    </title>
+    </head>
+    <body>
+    <h1 style="font-family:Comic Sans Ms;text-align="center";font-size:20pt;
+    color:#00FF00;>
+    Simple Login Page
+    </h1>
+    <form name="login">
+    Username<input type="text" name="userid"/>
+    Password<input type="password" name="pswrd"/>
+    <input type="button" onclick="check(this.form)" value="Login"/>
+    <input type="reset" value="Cancel"/>
+    </form>
+
+    <html>
+    <head>
+    <title>
+    Login page
+    </title>
+    </head>
+    <body>
+    <h1 style="font-family:Comic Sans Ms;text-align="center";font-size:20pt;
+    color:#00FF00;>
+    Simple Login Page
+    </h1>
+    <form name="login">
+    Username<input type="text" name="userid"/>
+    Password<input type="password" name="pswrd"/>
+    <input type="button" onclick="check(this.form)" value="Login"/>
+    <input type="reset" value="Cancel"/>
+    </form>
+    <script language="javascript">
+    function check(form)/*function to check userid & password*/
+    {
+     /*the following code checkes whether the entered userid and password are matching*/
+     if(form.userid.value == "myuserid" && form.pswrd.value == "mypswrd")
+      {
+        window.open('target.html')/*opens the target page while Id & password matches*/
+      }
+     else
+     {
+       alert("Error Password or Username")/*displays error message*/
+      }
+    }
+    </script>
+    </body>
+    </html>
+
+e == "myuserid" && form.pswrd.value == "mypswrd")
+      {
+        window.open('target.html')/*opens the target page while Id & password matches*/
+      }
+     else
+     {
+       alert("Error Password or Username")/*displays error message*/
+      }
+    }
+    </script>
+    </body>
+    </html>
